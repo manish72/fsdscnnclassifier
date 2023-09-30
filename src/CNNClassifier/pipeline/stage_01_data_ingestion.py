@@ -1,16 +1,19 @@
 from CNNClassifier.components.stage_01_data_ingestion import DataIngestion
-from CNNClassifier.config import ConfigurationManager
+from CNNClassifier.config.configuration import ConfigurationManager
 from CNNClassifier import logger
 
-logger.info(f"Data Ingestion stage started")
 
-config = ConfigurationManager()
-data_ingestion_config = config.get_data_ingestion_config()
 
-data_ingestion = DataIngestion(config=data_ingestion_config)
+logger.info(f"data ingesiton stage started")
 
-data_ingestion.download_file()
+config=ConfigurationManager()
+data_ingestion_config=config.get_data_ingestion_config()
 
-data_ingestion.unzip_and_clean()
+data_ingesiton=DataIngestion(config=data_ingestion_config)
 
-logger.info(f"Data Ingestion stage completed")
+data_ingesiton.download_file()
+
+data_ingesiton.unzip_and_clean()
+
+
+logger.info(f"data ingesiton stage completed")
