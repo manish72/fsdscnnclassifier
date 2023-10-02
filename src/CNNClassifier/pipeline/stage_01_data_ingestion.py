@@ -3,17 +3,16 @@ from CNNClassifier.config.configuration import ConfigurationManager
 from CNNClassifier import logger
 
 
+def dataIngestion():
+    try:
+        logger.info(f"Training Pipeline 1 -- data ingestion stage started")
 
-logger.info(f"data ingesiton stage started")
+        config = ConfigurationManager()
+        data_ingestion_config = config.get_data_ingestion_config()
+        data_ingestion = DataIngestion(config=data_ingestion_config)
+        data_ingestion.download_file()
+        data_ingestion.unzip_and_clean()
 
-config=ConfigurationManager()
-data_ingestion_config=config.get_data_ingestion_config()
-
-data_ingesiton=DataIngestion(config=data_ingestion_config)
-
-data_ingesiton.download_file()
-
-data_ingesiton.unzip_and_clean()
-
-
-logger.info(f"data ingesiton stage completed")
+        logger.info(f"Training Pipeline 1 --  data ingestion stage completed")
+    except Exception as e:
+        raise e
